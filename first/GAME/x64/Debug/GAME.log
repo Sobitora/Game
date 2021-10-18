@@ -1,0 +1,51 @@
+﻿  main.cpp
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(84,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(112,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(112,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(113,66): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(113,39): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(126,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(126,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(127,63): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(127,39): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(139,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(139,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(140,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(140,38): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(320,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(458,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(462,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(466,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(466,44): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(476,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(502,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(527,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  GAME.vcxproj -> C:\Users\web\Desktop\SFML\first\x64\Debug\GAME.exe
