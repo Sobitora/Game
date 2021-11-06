@@ -238,17 +238,6 @@ int main()
 
 
 
-	//Fontname
-	Font fontname;
-	if (!fontname.loadFromFile("front/Leoscar Serif.ttf")) {
-		cout << "Could not load front";
-	}
-	Text name;
-	name.setFont(fontname);
-	name.setCharacterSize(40);
-	name.setStyle(Text::Bold);
-	String test;
-	//name.setString(test);
 	
 	//Fontscore
 	Font font;
@@ -273,15 +262,37 @@ int main()
 	Sprite Background(Forest);
 	Background.setScale(0.8f, 0.8f);
 
+	//BGinputname
+	Texture BGmenuname;
+	if (!BGmenuname.loadFromFile("img/sunday.jfif"))
+	{
+		cout << "Load failed" << endl;
+	}
+	Sprite bgmenuname(BGmenuname);
+	bgmenuname.setScale(0.8f, 0.8f);
+	
 	Texture BGinputname;
-	if (!BGinputname.loadFromFile("img/sunday.jfif"))
+	if (!BGinputname.loadFromFile("img/name2.png"))
 	{
 		cout << "Load failed" << endl;
 	}
 	Sprite bginputname(BGinputname);
-	bginputname.setScale(0.8f, 0.8f);
+	bginputname.setScale(1.5f, 1.5f);
+	bginputname.setPosition(window.getSize().x/2-bginputname.getGlobalBounds().width/2, window.getSize().y/2-bginputname.getGlobalBounds().height/2-50);
 	bool nameplayer = false;
 
+	//Fontname
+	Font fontname;
+	if (!fontname.loadFromFile("front/Leoscar Serif.ttf")) {
+		cout << "Could not load front";
+	}
+	Text nameUI;
+	nameUI.setFont(fontname);
+	nameUI.setCharacterSize(40);
+	nameUI.setStyle(Text::Bold);
+	nameUI.setPosition(window.getSize().x/2-100, window.getSize().y/2+30);
+	String test;
+	//name.setString(test);
 	
 
 	int animationFramePlayer = 0;
@@ -290,8 +301,28 @@ int main()
 	int animationFrameOak = 0;
 	int animationBullet = 0;
 	int animationHeart = 0;
-	
-	while (window.isOpen() && player.HP > 0)
+
+
+
+	//highScore
+	int scores[6], number = 0;
+	string rscore;
+	ifstream fscore("score.txt");
+	while (getline(fscore, rscore)) {
+		scores[number++] = stoi(rscore);
+	}
+	fscore.close();
+	string names[6], rname;
+	number = 0;
+	ifstream fname("name.txt");
+	while (getline(fname, rname)) {
+		names[number++] = rname+'\n';
+	}
+	fname.close();
+	bool savescore = true;
+
+
+	while (window.isOpen())
 	{
 		Event event;
 		while (window.pollEvent(event))
@@ -302,12 +333,13 @@ int main()
 			if (event.type == Event::TextEntered && !nameplayer && Play) {
 			//	//stoi(event.text.unicode);
 			//	cout << event.text.unicode;
-				//if (event.text.unicode < 128) {
-					test += static_cast<char>(event.text.unicode);
+				if (event.text.unicode < 128) {
+					//test += static_cast<char>(event.text.unicode);
 					if (Keyboard::isKeyPressed(Keyboard::Backspace)){
-						test = test.substring(0, test.getSize() - 2);
+						test = test.substring(0, test.getSize() - 1);
 					}
-			//}
+					else { test += static_cast<char>(event.text.unicode); }
+			}
 			}
 			/*if (Event::KeyPressed) {
 				cout << event.key.code;
@@ -368,16 +400,17 @@ int main()
 		}
 		
 		if (Play && !nameplayer) {
-			name.setString(test);
+			nameUI.setString(test);
+			window.draw(bgmenuname);
 			window.draw(bginputname);
-			window.draw(name);
+			window.draw(nameUI);
 			if (Keyboard::isKeyPressed(Keyboard::Enter)) {
 				nameplayer = true;
 			}
 		}
 
 			
-		if (Play && nameplayer) {
+		if (Play && nameplayer && player.HP > 0) {
 			window.draw(Background);
 
 			//Score
@@ -430,7 +463,7 @@ int main()
 				player.shape.move(3.f, 0.f);
 				player.shape.setTextureRect(IntRect(FramePlayerX * animationFramePlayer, FramePlayerY * 1, FramePlayerX, FramePlayerY));
 			}
-			if (sf::Keyboard::isKeyPressed(Keyboard::W) && player.shape.getPosition().y > 0)
+			if (sf::Keyboard::isKeyPressed(Keyboard::W) && player.shape.getPosition().y > 150)
 			{
 				player.shape.move(0.f, -3.f);
 				player.shape.setTextureRect(IntRect(FramePlayerX * animationFramePlayer, 0, FramePlayerX, FramePlayerY));
@@ -459,14 +492,14 @@ int main()
 					Enemies.push_back(Enemy(enemy));
 				}
 				if (randnum == 1) {
-					Ghost.shape.setPosition(0.f, rand() % int(window.getSize().y - FrameEnemyGhostY));
+					Ghost.shape.setPosition(0.f, (rand() % int(window.getSize().y - FrameEnemyGhostY -150))+150);
 					Ghosts.push_back(Enemy(Ghost));
 				}
 				if (randnum == 2) {
-					Oak.shape.setPosition(window.getSize().x, rand() % int(window.getSize().y - FrameEnemyOakY));
+					Oak.shape.setPosition(window.getSize().x, (rand() % int(window.getSize().y - FrameEnemyOakY -150))+150);
 					Oaks.push_back(Enemy(Oak));
 				}
-				cout << randnum << endl;
+				//cout << randnum << endl;
 				SpawnEnemy = 0;
 			}
 
@@ -598,8 +631,8 @@ int main()
 						Ghosts[k].HP--;
 						if (Ghosts[k].HP == 0)
 						{
-							randnum = rand() % 10;
-							if (randnum == 9) {
+							randnum = rand() % 4;
+							if (randnum == 3) {
 								Heals.push_back(Item(Heal));
 							Heals[Heals.size() - 1].shape.setPosition(Ghosts[k].shape.getPosition());
 							}
@@ -692,7 +725,36 @@ int main()
 			if (animationHeart >= 24) {
 				animationHeart = 0;
 			}
+
+			
 		}
+
+		//if (!(player.HP > 0)) {
+		//	window.draw(Background);
+		//	for (int i = 0;i < 5;i++) {
+		//		if (test == names[i]) {
+		//			savescore = false;
+		//		}
+		//		//else { savescore = true; }
+		//	}
+		//	if (savescore) {
+		//		scores[5] = Scores;
+		//		names[5] = test;
+		//	}
+		//	//cout << test;
+		//	for (int i = 0;i < 6;i++) {
+		//		for (int j = 0;j < 5;j++) {
+		//			if (scores[j] < scores[j + 1]) {
+		//				swap(scores[j], scores[j + 1]);
+		//				swap(names[j], names[j + 1]);
+		//			}
+		//		}
+		//	}
+		//	for (int i = 0;i < 6;i++) {
+		//		//cout << scores[i] << endl;
+		//		//cout << names[i];
+		//	}
+		//}
 		window.display();
 		window.clear();
 	}
