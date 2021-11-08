@@ -246,7 +246,7 @@ int main()
 	}
 	Text score;
 	score.setFont(font);
-	score.setCharacterSize(35);
+	score.setCharacterSize(50);
 	//score.setFillColor(Color::Yellow);
 	score.setStyle(Text::Bold);
 	int Scores = 0;
@@ -291,7 +291,7 @@ int main()
 	nameUI.setCharacterSize(40);
 	nameUI.setStyle(Text::Bold);
 	nameUI.setPosition(window.getSize().x/2-100, window.getSize().y/2+30);
-	String test;
+	string test;
 	//name.setString(test);
 	
 
@@ -321,6 +321,17 @@ int main()
 	fname.close();
 	bool savescore = true;
 
+	//highScoreUI
+	Texture Scoreboard;
+	if (!Scoreboard.loadFromFile("img/highscore.png"))
+	{
+		cout << "Load failed" << endl;
+	}
+	Sprite ScoreboardUI(Scoreboard);
+	ScoreboardUI.setScale(2.9f, 2.9f);
+	ScoreboardUI.setPosition(window.getSize().x / 2 - ScoreboardUI.getGlobalBounds().width / 2, window.getSize().y / 2 - ScoreboardUI.getGlobalBounds().height / 2 );
+
+
 
 	while (window.isOpen())
 	{
@@ -336,7 +347,9 @@ int main()
 				if (event.text.unicode < 128) {
 					//test += static_cast<char>(event.text.unicode);
 					if (Keyboard::isKeyPressed(Keyboard::Backspace)){
-						test = test.substring(0, test.getSize() - 1);
+						if (!test.empty()) {
+							test.pop_back();
+						}
 					}
 					else { test += static_cast<char>(event.text.unicode); }
 			}
@@ -405,6 +418,7 @@ int main()
 			window.draw(bginputname);
 			window.draw(nameUI);
 			if (Keyboard::isKeyPressed(Keyboard::Enter)) {
+				test += '\n';
 				nameplayer = true;
 			}
 		}
@@ -729,32 +743,62 @@ int main()
 			
 		}
 
-		//if (!(player.HP > 0)) {
-		//	window.draw(Background);
-		//	for (int i = 0;i < 5;i++) {
-		//		if (test == names[i]) {
-		//			savescore = false;
-		//		}
-		//		//else { savescore = true; }
-		//	}
-		//	if (savescore) {
-		//		scores[5] = Scores;
-		//		names[5] = test;
-		//	}
-		//	//cout << test;
-		//	for (int i = 0;i < 6;i++) {
-		//		for (int j = 0;j < 5;j++) {
-		//			if (scores[j] < scores[j + 1]) {
-		//				swap(scores[j], scores[j + 1]);
-		//				swap(names[j], names[j + 1]);
-		//			}
-		//		}
-		//	}
-		//	for (int i = 0;i < 6;i++) {
-		//		//cout << scores[i] << endl;
-		//		//cout << names[i];
-		//	}
-		//}
+		if (!(player.HP > 0)) {
+			window.draw(Background);
+			window.draw(ScoreboardUI);
+			for (int i = 0;i < 5;i++) {
+				score.setString(to_string(scores[i]));
+				score.setPosition(window.getSize().x / 2 - score.getGlobalBounds().width / 2 + 200, window.getSize().y / 2 - score.getGlobalBounds().height / 2 + (i*80) - 130);
+				score.setOutlineColor(Color::Red);
+				score.setOutlineThickness(3);
+				window.draw(score);
+				nameUI.setString(names[i]);
+				nameUI.setCharacterSize(50);
+				nameUI.setOutlineColor(Color::Red);
+				nameUI.setOutlineThickness(3);
+				nameUI.setPosition(window.getSize().x / 2 - nameUI.getGlobalBounds().width / 2 - 200, window.getSize().y / 2 - nameUI.getGlobalBounds().height / 2 + (i * 80) - 130);
+				window.draw(nameUI);
+			}
+
+			for (int i = 0;i < 5;i++) {
+				if (names[i] == test) {
+					savescore = false;
+				}
+				//else { savescore = true; }
+			}
+			if (savescore) {
+				scores[5] = Scores;
+				names[5] = test;
+			for (int i = 0;i < 6;i++) {
+				for (int j = 0;j < 5;j++) {
+					if (scores[j] < scores[j + 1]) {
+						swap(scores[j], scores[j + 1]);
+						swap(names[j], names[j + 1]);
+						break;
+					}
+				}
+			}
+			for (int i = 0;i < 5;i++) {
+				cout << names[i];
+				cout << scores[i] << endl;
+			}
+			//ofstream wscore("score.txt");
+			//ofstream wname("name.txt");
+			//for (int j = 0;j < 5;j++)
+			//{
+			//	//cout << scores[j] << endl;
+			//	wscore << scores[j] << endl;
+			//	wname << names[j] ;
+			//}
+			//wscore.close();
+			//wname.close();
+			/*cout << test;*/
+			}
+			//for (int i = 0;i < 6;i++) {
+			//	//cout << scores[i] << endl;
+				//cout << names[2];
+			//}
+		}
 		window.display();
 		window.clear();
 	}

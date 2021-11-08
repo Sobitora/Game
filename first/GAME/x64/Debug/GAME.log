@@ -46,16 +46,16 @@ C:\Users\web\Desktop\SFML\first\GAME\main.cpp(293,41): warning C4244: 'argument'
           [
               T=unsigned int
           ]
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(352,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(491,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(495,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(499,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(499,44): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(365,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(505,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(509,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(513,104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(513,44): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(509,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(535,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\web\Desktop\SFML\first\GAME\main.cpp(560,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(523,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(549,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\web\Desktop\SFML\first\GAME\main.cpp(574,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   GAME.vcxproj -> C:\Users\web\Desktop\SFML\first\x64\Debug\GAME.exe
